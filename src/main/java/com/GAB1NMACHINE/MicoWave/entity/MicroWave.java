@@ -1,10 +1,15 @@
 package com.GAB1NMACHINE.MicoWave.entity;
 
 import jakarta.persistence.*;
+
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+
+@Setter
+@Getter
 @Entity
 public class MicroWave {
     @Id
@@ -22,8 +27,10 @@ public class MicroWave {
     @JoinColumn(name = "micro_wave_id") // Spécifie la clé étrangère dans la table Reservation
     private List<Reservation> reservations = new ArrayList<>();
 
+    // Constructeur par défaut
     public MicroWave() {
     }
+
 
     public boolean isReservedAt(LocalDateTime startTime, int cookingTime) {
         LocalDateTime endTime = startTime.plusMinutes(cookingTime);
