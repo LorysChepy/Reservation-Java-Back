@@ -3,6 +3,8 @@ package com.GAB1NMACHINE.MicoWave;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import repository.MicroWaveRepository;
+
 
 @SpringBootApplication
 @EnableJpaRepositories(basePackages = "repository")
