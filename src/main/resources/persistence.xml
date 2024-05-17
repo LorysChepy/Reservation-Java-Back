@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
+        <persistence-unit name="test-pu" transaction-type="RESOURCE_LOCAL">
+            <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+            <class>com.GAB1NMACHINE.MicoWave.entity.MicroWave</class>
+            <class>com.GAB1NMACHINE.MicoWave.entity.MicroWave.Reservation</class>
+            <class>com.GAB1NMACHINE.MicoWave.entity.User</class>
+            <properties>
+                <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
+                <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"/>
+                <property name="javax.persistence.jdbc.user" value="sa"/>
+                <property name="javax.persistence.jdbc.password" value=""/>
+                <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+                <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
+                <property name="hibernate.show_sql" value="true"/>
+                <property name="hibernate.format_sql" value="true"/>
+            </properties>
+        </persistence-unit>
+    </persistence>
+</beans>
+
