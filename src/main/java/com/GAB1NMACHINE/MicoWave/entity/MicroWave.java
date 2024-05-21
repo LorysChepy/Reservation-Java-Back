@@ -31,7 +31,8 @@ public class MicroWave {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "micro_wave_id") // Spécifie la clé étrangère dans la table Reservation
-    private List<Reservation> reservations = new ArrayList<>().reversed();
+    private List<Reservation> reservations = new ArrayList<>();
+
 
     // Constructeur par défaut
     public MicroWave() {
