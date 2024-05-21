@@ -1,8 +1,8 @@
 package com.GAB1NMACHINE.Back;
 
-import com.GAB1NMACHINE.MicoWave.entity.MicroWave;
-import com.GAB1NMACHINE.MicoWave.entity.User;
-import com.GAB1NMACHINE.MicoWave.manager.MicroWaveManagement;
+import com.GAB1NMACHINE.microwaves.entity.MicroWave;
+import com.GAB1NMACHINE.microwaves.entity.User;
+import com.GAB1NMACHINE.microwaves.service.MicroWaveService;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
@@ -17,7 +17,7 @@ public class MicroWaveManagementTest {
 
     private EntityManagerFactory emf;
     private EntityManager em;
-    private MicroWaveManagement microWaveManagement;
+    private MicroWaveService microWaveService;
 
     @BeforeEach
     public void setUp() {
@@ -36,7 +36,7 @@ public class MicroWaveManagementTest {
         em.getTransaction().commit();
 
         List<MicroWave> microWaves = List.of(microWave1, microWave2, microWave3);
-        microWaveManagement = new MicroWaveManagement(microWaves);
+        microWaveService = new MicroWaveService(microWaves);
 
         System.out.println("Setup completed. MicroWaves persisted: " + microWaves.size());
     }

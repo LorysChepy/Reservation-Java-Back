@@ -1,7 +1,7 @@
-package com.GAB1NMACHINE.MicoWave.controller;
+package com.GAB1NMACHINE.microwaves.controller;
 
-import com.GAB1NMACHINE.MicoWave.entity.User;
-import repository.UserRepository;
+import com.GAB1NMACHINE.microwaves.entity.User;
+import com.GAB1NMACHINE.microwaves.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

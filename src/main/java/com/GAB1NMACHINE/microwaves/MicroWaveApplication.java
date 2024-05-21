@@ -1,9 +1,8 @@
-package com.GAB1NMACHINE.MicoWave;
+package com.GAB1NMACHINE.microwaves;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
-import repository.MicroWaveRepository;
 
 
 @SpringBootApplication

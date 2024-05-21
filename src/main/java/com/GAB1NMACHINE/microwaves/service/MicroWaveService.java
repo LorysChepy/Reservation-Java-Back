@@ -1,27 +1,30 @@
-package com.GAB1NMACHINE.MicoWave.manager;
+package com.GAB1NMACHINE.microwaves.service;
 
-import com.GAB1NMACHINE.MicoWave.entity.MicroWave;
-import com.GAB1NMACHINE.MicoWave.entity.User;
+import com.GAB1NMACHINE.microwaves.entity.*;
+import com.GAB1NMACHINE.microwaves.repository.*;
 import lombok.Getter;
-import lombok.Setter;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import repository.MicroWaveRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-@Getter
+@Slf4j
+@RequiredArgsConstructor
 @Service
-public class MicroWaveManagement {
+public class MicroWaveService {
+
     private final List<MicroWave> availableMicroWaves;
+    private final MicroWaveRepository microWaveRepository;
 
     @Autowired
-    private MicroWaveRepository microWaveRepository;
+    //private MicroWaveRepository microWaveRepository;
 
     // Constructor
-    public MicroWaveManagement(List<MicroWave> availableMicroWaves) {
+    public MicroWaveService(List<MicroWave> availableMicroWaves) {
         this.availableMicroWaves = availableMicroWaves;
     }
 

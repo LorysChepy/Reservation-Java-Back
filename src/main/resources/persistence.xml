@@ -5,9 +5,9 @@
     <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.2">
         <persistence-unit name="test-pu" transaction-type="RESOURCE_LOCAL">
             <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-            <class>com.GAB1NMACHINE.MicoWave.entity.MicroWave</class>
-            <class>com.GAB1NMACHINE.MicoWave.entity.MicroWave.com.GAB1NMACHINE.MicoWave.entity.</class>
-            <class>com.GAB1NMACHINE.MicoWave.entity.User</class>
+            <class>com.GAB1NMACHINE.microwaves.entity.MicroWave</class>
+            <class>com.GAB1NMACHINE.microwaves.entity.MicroWave.com.GAB1NMACHINE.microwaves.entity.</class>
+            <class>com.GAB1NMACHINE.microwaves.entity.User</class>
             <properties>
                 <property name="javax.persistence.jdbc.driver" value="org.h2.Driver"/>
                 <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"/>

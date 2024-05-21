@@ -1,11 +1,10 @@
-package com.GAB1NMACHINE.MicoWave.controller;
+package com.GAB1NMACHINE.microwaves.controller;
 
-import com.GAB1NMACHINE.MicoWave.entity.MicroWave;
-import com.GAB1NMACHINE.MicoWave.entity.User;
-import com.GAB1NMACHINE.MicoWave.manager.MicroWaveManagement;
+import com.GAB1NMACHINE.microwaves.entity.MicroWave;
+import com.GAB1NMACHINE.microwaves.entity.User;
+import com.GAB1NMACHINE.microwaves.service.MicroWaveService;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,16 +15,16 @@ import java.util.Optional;
 @RequestMapping("/api/microwaves")
 public class MicroWaveController {
 
-    private final MicroWaveManagement microWaveManagement;
+    private final MicroWaveService microWaveService;
 
-    public MicroWaveController(MicroWaveManagement microWaveManagement) {
-        this.microWaveManagement = microWaveManagement;
+    public MicroWaveController(MicroWaveService microWaveService) {
+        this.microWaveService = microWaveService;
     }
 
     // GET Method to retrieve all available microwaves
     @GetMapping
     public ResponseEntity<?> getAvailableMicroWaves() {
-        return ResponseEntity.ok(microWaveManagement.getAvailableMicroWaves());
+        return ResponseEntity.ok(microWaveService.getAvailableMicroWaves());
     }
 
     // POST Method to reserve a microwave
@@ -33,21 +32,18 @@ public class MicroWaveController {
     public ResponseEntity<String> reserveMicroWave(@RequestBody ReservationRequest request) {
         User user = new User(); // You should set user attributes based on your user management logic
         user.setName(request.getUserName());
-        String response = microWaveManagement.reserveMicroWave(user, request.getCookingTime(), request.getDesiredStartTime());
+        String response = microWaveService.reserveMicroWave(user, request.getCookingTime(), request.getDesiredStartTime());
         return ResponseEntity.ok(response);
     }
 
     // PUT Method to modify a reservation (simplified version)
     @PutMapping("/{id}")
     public ResponseEntity<MicroWave> updateMicroWave(@PathVariable Long id, @RequestBody MicroWave microWaveDetails) {
-        Optional<MicroWave> optionalMicroWave = microWaveManagement.getMicroWaveById(id);
+        Optional<MicroWave> optionalMicroWave = microWaveService.getMicroWaveById(id);
         if (optionalMicroWave.isPresent()) {
             MicroWave microWave = optionalMicroWave.get();
-            microWave.setName(microWaveDetails.getName());
-            microWave.setReserved(microWaveDetails.getAssociedUserId());
-            microWave.setDateStart(microWaveDetails.getDateStart());
-            microWave.cookingTimes(microWaveDetails.getCookingTime());
-            MicroWave updatedMicroWave = microWaveManagement.saveMicroWave(microWave);
+            //microWave.setDateStart(microWaveDetails.getDateStart());
+            MicroWave updatedMicroWave = microWaveService.saveMicroWave(microWave);
             return ResponseEntity.ok(updatedMicroWave);
         } else {
             return ResponseEntity.notFound().build();
@@ -56,9 +52,9 @@ public class MicroWaveController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteMicroWave(@PathVariable Long id) {
-        Optional<MicroWave> optionalMicroWave = microWaveManagement.getMicroWaveById(id);
+        Optional<MicroWave> optionalMicroWave = microWaveService.getMicroWaveById(id);
         if (optionalMicroWave.isPresent()) {
-            microWaveManagement.deleteMicroWave(id);
+            microWaveService.deleteMicroWave(id);
             return ResponseEntity.noContent().build();
         } else {
             return ResponseEntity.notFound().build();
