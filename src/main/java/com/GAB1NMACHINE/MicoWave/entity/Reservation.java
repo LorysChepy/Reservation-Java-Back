@@ -1,24 +1,25 @@
-import com.GAB1NMACHINE.MicoWave.entity.User;
+package com.GAB1NMACHINE.MicoWave.entity;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-public boolean isReserved() {
-    boolean reserved = false;
-    return reserved;
-}
+@Setter
+@Getter
+public class Reservation {
+    // Sets the user who reserved the microwave
+    // Gets the user who reserved the microwave
+    private User reservedBy;  // Field declaration moved up
 
-public User getReservedBy() {
-    User reservedBy = null;
-    return reservedBy;
-}
+    public static void main(String[] args) {
+        // Your main method content
+        // Typically used for launching a Java application
+    }
 
-public void setReservedBy(User reservedBy) {
-    this.reservedBy = reservedBy;
-}
+    // Checks if the microwave is reserved
+    public boolean isReserved() {
+        return false;           // This could be modified to check a condition
+    }
 
-
-private User reservedBy;
-
-public void main() {
 }
