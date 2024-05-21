@@ -20,6 +20,10 @@ public class MicroWave {
 
     private boolean reserved;
     private String name;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private int cookingTime;
+
 
     @ManyToOne
     @JoinColumn(name = "user_id") // Spécifie la clé étrangère dans la table MicroWave
@@ -27,7 +31,7 @@ public class MicroWave {
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "micro_wave_id") // Spécifie la clé étrangère dans la table Reservation
-    private List<Reservation> reservations = new ArrayList<>();
+    private List<Reservation> reservations = new ArrayList<>().reversed();
 
     // Constructeur par défaut
     public MicroWave() {
@@ -37,7 +41,7 @@ public class MicroWave {
     public boolean isReservedAt(LocalDateTime startTime, int cookingTime) {
         LocalDateTime endTime = startTime.plusMinutes(cookingTime);
         for (Reservation reservation : reservations) {
-            if (startTime.isBefore(reservation.getEndTime().plusSeconds(30)) && endTime.isAfter(reservation.getStartTime().minusSeconds(30))) {
+            if (startTime.isBefore(reservation.cookingTimes().plusSeconds(30)) && endTime.isAfter(reservation.getStartTime().minusSeconds(30))) {
                 return true;
             }
         }
@@ -54,12 +58,31 @@ public class MicroWave {
             return LocalDateTime.now();
         } else {
             Reservation lastReservation = reservations.get(reservations.size() - 1);
-            return lastReservation.getEndTime().plusSeconds(30);
+            return lastReservation.cookingTimes().plusSeconds(30);
         }
+    }
+
+    public boolean getAssociedUserId() {
+        return false;
+    }
+
+    public Object getDateStart() {
+        return startTime;
+    }
+
+    public void setDateStart(Object dateStart) {
+    }
+
+
+    public int cookingTimes(Object dateEnd) {
+
+        return cookingTime;
     }
 
     @Entity
     public static class Reservation {
+        private LocalDateTime startTime;
+        private LocalDateTime endTime;
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
@@ -68,8 +91,6 @@ public class MicroWave {
         @JoinColumn(name = "user_id")
         private User user;
 
-        private LocalDateTime startTime;
-        private LocalDateTime endTime;
 
         public Reservation() {
             // Constructeur par défaut requis par JPA
@@ -88,17 +109,11 @@ public class MicroWave {
         public LocalDateTime getEndTime() {
             return endTime;
         }
-    }
 
-    public boolean isReserved() {
-        return reserved;
-    }
-
-    public User getReservedBy() {
-        return reservedBy;
-    }
-
-    public void setReservedBy(User reservedBy) {
-        this.reservedBy = reservedBy;
+        public LocalDateTime cookingTimes() {
+            return startTime.plusSeconds(30);
+        }
     }
 }
+
+    

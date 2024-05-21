@@ -44,9 +44,9 @@ public class MicroWaveController {
         if (optionalMicroWave.isPresent()) {
             MicroWave microWave = optionalMicroWave.get();
             microWave.setName(microWaveDetails.getName());
-            microWave.setAssociedUserId(microWaveDetails.getAssociedUserId());
+            microWave.setReserved(microWaveDetails.getAssociedUserId());
             microWave.setDateStart(microWaveDetails.getDateStart());
-            microWave.setDateEnd(microWaveDetails.getDateEnd());
+            microWave.cookingTimes(microWaveDetails.getCookingTime());
             MicroWave updatedMicroWave = microWaveManagement.saveMicroWave(microWave);
             return ResponseEntity.ok(updatedMicroWave);
         } else {
