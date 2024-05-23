@@ -6,6 +6,7 @@ import lombok.Setter;
 
 
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,27 +16,12 @@ import java.util.List;
 @Entity
 public class MicroWave {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long micro_wave_id;
-    private LocalDateTime startTime;
-    private LocalDateTime endTime;
+    private Long id;
+    private LocalTime nextAvailable;
 
-
-    @ManyToOne
-    @JoinColumn(name = "user_id") // Spécifie la clé étrangère dans la table MicroWave
-    private User reservedBy;
-
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
-    @JoinColumn(name = "micro_wave_id") // Spécifie la clé étrangère dans la table Reservation
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "microWave")
     private List<Reservation> reservations = new ArrayList<>();
 
-
-    // Constructeur par défaut
     public MicroWave() {
-    }
-
-
-    public LocalDateTime getNextAvailableStartTime() {
-        return LocalDateTime.now();
     }
 }

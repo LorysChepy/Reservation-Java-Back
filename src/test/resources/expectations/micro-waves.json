@@ -1,0 +1,17 @@
+[
+  {
+    "microWaveId": 1,
+    "startDate": "12:00:00",
+    "endDate": "12:05:30"
+  },
+  {
+    "microWaveId": 2,
+    "startDate": "12:00:00",
+    "endDate": "12:05:30"
+  },
+  {
+    "microWaveId": 3,
+    "startDate": "12:00:00",
+    "endDate": "12:05:30"
+  }
+]

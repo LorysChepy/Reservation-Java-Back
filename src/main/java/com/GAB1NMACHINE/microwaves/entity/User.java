@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Entity
+@Entity(name = "microWaveUser")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

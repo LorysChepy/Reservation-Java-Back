@@ -1,4 +1,4 @@
-package com.GAB1NMACHINE.Back;
+package com.GAB1NMACHINE.microwaves;
 
 import com.GAB1NMACHINE.microwaves.entity.MicroWave;
 import com.GAB1NMACHINE.microwaves.entity.User;
@@ -36,7 +36,6 @@ public class MicroWaveManagementTest {
         em.getTransaction().commit();
 
         List<MicroWave> microWaves = List.of(microWave1, microWave2, microWave3);
-        microWaveService = new MicroWaveService(microWaves);
 
         System.out.println("Setup completed. MicroWaves persisted: " + microWaves.size());
     }

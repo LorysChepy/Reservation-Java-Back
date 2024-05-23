@@ -1,4 +1,4 @@
-package com.GAB1NMACHINE.Back;
+package com.GAB1NMACHINE.microwaves;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
